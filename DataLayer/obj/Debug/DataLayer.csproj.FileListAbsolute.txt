@@ -1,0 +1,11 @@
+C:\Users\hanh7\source\repos\SuperMarket\bin\Debug\DataLayer.dll
+C:\Users\hanh7\source\repos\SuperMarket\bin\Debug\DataLayer.pdb
+C:\Users\hanh7\source\repos\SuperMarket\DataLayer\obj\Debug\DataLayer.csproj.AssemblyReference.cache
+C:\Users\hanh7\source\repos\SuperMarket\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
+C:\Users\hanh7\source\repos\SuperMarket\DataLayer\obj\Debug\DataLayer.csproj.CopyComplete
+C:\Users\hanh7\source\repos\SuperMarket\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\hanh7\source\repos\SuperMarket\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\hanh7\source\repos\SuperMarket\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\hanh7\source\repos\SuperMarket\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\hanh7\source\repos\SuperMarket\DataLayer\bin\Debug\TransferObject.dll
+C:\Users\hanh7\source\repos\SuperMarket\DataLayer\bin\Debug\TransferObject.pdb

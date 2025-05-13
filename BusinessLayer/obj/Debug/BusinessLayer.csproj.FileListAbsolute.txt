@@ -1,0 +1,13 @@
+C:\Users\hanh7\source\repos\SuperMarket\bin\Debug\BusinessLayer.dll
+C:\Users\hanh7\source\repos\SuperMarket\bin\Debug\BusinessLayer.pdb
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\obj\Debug\BusinessLayer.csproj.AssemblyReference.cache
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\obj\Debug\BusinessLayer.csproj.CopyComplete
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\obj\Debug\BusinessLayer.dll
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\obj\Debug\BusinessLayer.pdb
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\bin\Debug\BusinessLayer.dll
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\bin\Debug\BusinessLayer.pdb
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\bin\Debug\DataLayer.dll
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\bin\Debug\TransferObject.dll
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\bin\Debug\DataLayer.pdb
+C:\Users\hanh7\source\repos\SuperMarket\BusinessLayer\bin\Debug\TransferObject.pdb

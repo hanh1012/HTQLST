@@ -1,0 +1,8 @@
+C:\Users\hanh7\source\repos\SuperMarket\bin\Debug\TransferObject.dll
+C:\Users\hanh7\source\repos\SuperMarket\bin\Debug\TransferObject.pdb
+C:\Users\hanh7\source\repos\SuperMarket\TransferObject\obj\Debug\TransferObject.csproj.AssemblyReference.cache
+C:\Users\hanh7\source\repos\SuperMarket\TransferObject\obj\Debug\TransferObject.csproj.CoreCompileInputs.cache
+C:\Users\hanh7\source\repos\SuperMarket\TransferObject\obj\Debug\TransferObject.dll
+C:\Users\hanh7\source\repos\SuperMarket\TransferObject\obj\Debug\TransferObject.pdb
+C:\Users\hanh7\source\repos\SuperMarket\TransferObject\bin\Debug\TransferObject.dll
+C:\Users\hanh7\source\repos\SuperMarket\TransferObject\bin\Debug\TransferObject.pdb
