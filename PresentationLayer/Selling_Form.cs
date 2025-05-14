@@ -124,7 +124,7 @@ namespace PresentationLayer
         {
             if (string.IsNullOrEmpty(txtBillID.Text))
             {
-                MessageBox.Show("Missing Bill Id");
+                MessageBox.Show("Thiếu bill ID");
                 return;
             }
 
@@ -155,7 +155,7 @@ namespace PresentationLayer
                     orderDetailBL.Add(orderDetail);
                 }
 
-                MessageBox.Show("Order Added Successfully");
+                MessageBox.Show("Thêm thành công");
                 Con.Close();
                 populatebills();
             }

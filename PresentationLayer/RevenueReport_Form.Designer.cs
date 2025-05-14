@@ -27,6 +27,7 @@ namespace PresentationLayer
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnBackToCustomer = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.RevenueDGV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,11 +128,22 @@ namespace PresentationLayer
             this.btnBackToCustomer.UseVisualStyleBackColor = true;
             this.btnBackToCustomer.Click += new System.EventHandler(this.btnBackToCustomer_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 12);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(190, 28);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Báo cáo doanh thu";
+            // 
             // RevenueReport_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 768);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBackToCustomer);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -166,5 +178,6 @@ namespace PresentationLayer
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnBackToCustomer;
+        private System.Windows.Forms.Label label3;
     }
 }
