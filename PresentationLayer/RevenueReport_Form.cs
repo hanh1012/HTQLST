@@ -63,5 +63,21 @@ namespace PresentationLayer
             Login login = new Login();
             login.Show();
         }
+
+        private void btnBackToCustomer_Click(object sender, EventArgs e)
+        {
+            
+                try
+                {
+                    Seller_Form seller_Form = new Seller_Form();
+                    seller_Form.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi quay lại form khách hàng: " + ex.Message);
+                }
+            
+        }
     }
 }

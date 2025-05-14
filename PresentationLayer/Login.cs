@@ -17,7 +17,7 @@ namespace PresentationLayer
         private const int EM_SETCUEBANNER = 0x1501;
         public static string Sellername = "";
         public static string CustomerEmail = "";
-
+        public static string CurrentRole = "";
         public Login()
         {
             InitializeComponent();
@@ -59,6 +59,7 @@ namespace PresentationLayer
             }
 
             string role = cbSelectRole.SelectedItem.ToString();
+            CurrentRole = role; 
             if (role == "Admin")
             {
                 if (txtUsername.Text == "admin" && txtPassword.Text == "password")

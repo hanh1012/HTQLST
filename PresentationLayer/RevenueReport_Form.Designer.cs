@@ -125,6 +125,7 @@ namespace PresentationLayer
             this.btnBackToCustomer.TabIndex = 9;
             this.btnBackToCustomer.Text = "Trở về";
             this.btnBackToCustomer.UseVisualStyleBackColor = true;
+            this.btnBackToCustomer.Click += new System.EventHandler(this.btnBackToCustomer_Click);
             // 
             // RevenueReport_Form
             // 

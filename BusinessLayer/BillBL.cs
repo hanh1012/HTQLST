@@ -31,13 +31,12 @@ namespace BusinessLayer
 
         public DataTable GetRevenueByMonth(int month, int year)
         {
-            string sql = "SELECT * FROM BillsTbl WHERE MONTH(CAST(BillDate AS DATE)) = @Month AND YEAR(CAST(BillDate AS DATE)) = @Year";
-            SqlParameter[] parameters = new SqlParameter[]
-            {
+            string query = @"SELECT BillId, SellerName, CAST(BillDate AS DATE) as BillDate, TotalAmount
+                    FROM BillsTbl
+                    WHERE MONTH(CAST(BillDate AS DATE)) = @Month AND YEAR(CAST(BillDate AS DATE)) = @Year";
+            return new DataProvider().ExecuteQuery(query, CommandType.Text,
                 new SqlParameter("@Month", month),
-                new SqlParameter("@Year", year)
-            };
-            return dataProvider.ExecuteQuery(sql, CommandType.Text, parameters);
+                new SqlParameter("@Year", year));
         }
     }
 }

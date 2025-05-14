@@ -62,12 +62,15 @@ namespace PresentationLayer
             Con.Close();
         }
 
-        private void Selling_From_Load(object sender, EventArgs e)
+        private void Selling_Form_Load(object sender, EventArgs e) // Đổi từ Selling_From_Load
         {
             populate();
             populatebills();
             FillCategory();
-            lblSellerName.Text = Login.Sellername;
+            if (!string.IsNullOrEmpty(Login.Sellername))
+                lblSellerName.Text = Login.Sellername;
+            else if (Login.CurrentRole == "Admin")
+                lblSellerName.Text = "Admin"; // Hoặc lấy tên Admin từ hệ thống
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -109,6 +112,14 @@ namespace PresentationLayer
             productBL.UpdateQuantity(prodId, qty);
             populate();
         }
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy"); // Giữ hiển thị cho giao diện
+            billDate = DateTime.Today; // Thêm biến để lưu datetime chuẩn
+        }
+
+        private DateTime billDate; // Khai báo biến toàn cục
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtBillID.Text))
@@ -120,8 +131,12 @@ namespace PresentationLayer
             try
             {
                 Con.Open();
-                string query = $"INSERT INTO BillsTbl VALUES({txtBillID.Text}, '{lblSellerName.Text}', '{lblDate.Text}', {lblAmount.Text})";
+                string query = $"INSERT INTO BillsTbl VALUES(@BillId, @SellerName, @BillDate, @TotalAmount)";
                 SqlCommand cmd = new SqlCommand(query, Con);
+                cmd.Parameters.AddWithValue("@BillId", int.Parse(txtBillID.Text));
+                cmd.Parameters.AddWithValue("@SellerName", lblSellerName.Text);
+                cmd.Parameters.AddWithValue("@BillDate", billDate); // Sử dụng datetime chuẩn
+                cmd.Parameters.AddWithValue("@TotalAmount", Convert.ToInt32(lblAmount.Text));
                 cmd.ExecuteNonQuery();
 
                 // Lưu chi tiết đơn hàng
@@ -134,7 +149,7 @@ namespace PresentationLayer
                     {
                         OrderId = orderId++,
                         BillId = int.Parse(txtBillID.Text),
-                        ProdId = productBL.GetProductIdByName(row.Cells[1].Value.ToString()), // Giả định có phương thức này
+                        ProdId = productBL.GetProductIdByName(row.Cells[1].Value.ToString()),
                         Quantity = Convert.ToInt32(row.Cells[2].Value)
                     };
                     orderDetailBL.Add(orderDetail);
@@ -150,13 +165,14 @@ namespace PresentationLayer
                 Con.Close();
             }
         }
-        
+
 
         private void cbSelectCategory_SelectionChangeCommitted(object sender, EventArgs e)
         {
             Con.Open();
-            string query = "SELECT ProdName, ProdQty FROM ProductsTbl WHERE ProdCat='" + cbSelectCategory.SelectedValue.ToString() + "'";
+            string query = "SELECT ProdId, ProdName, ProdQty, ProdPrice FROM ProductsTbl WHERE ProdCat = @Category";
             SqlDataAdapter sda = new SqlDataAdapter(query, Con);
+            sda.SelectCommand.Parameters.AddWithValue("@Category", cbSelectCategory.SelectedValue.ToString());
             SqlCommandBuilder builder = new SqlCommandBuilder(sda);
             var ds = new DataSet();
             sda.Fill(ds);
@@ -168,15 +184,13 @@ namespace PresentationLayer
         {
             if (e.RowIndex >= 0)
             {
-                txtProductName.Text = ProdDGV.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
-                txtProductQuantity.Text = ProdDGV.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
+                txtProductID.Text = ProdDGV.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? ""; // ProdId
+                txtProductName.Text = ProdDGV.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? ""; // ProdName
+                txtProductQuantity.Text = "1"; // Mặc định là 1, có thể chỉnh
+                txtProductPrice.Text = ProdDGV.Rows[e.RowIndex].Cells[3].Value?.ToString() ?? ""; // ProdPrice
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            lblDate.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
-        }
 
         private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
@@ -282,6 +296,8 @@ namespace PresentationLayer
             }
         }
 
+
+
         private void btnAddToCart_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtProductName.Text) || string.IsNullOrEmpty(txtProductQuantity.Text))
@@ -299,16 +315,16 @@ namespace PresentationLayer
                 return;
             }
 
-            int total = Convert.ToInt32(txtProductPrice.Text) * qty;
+            int price = Convert.ToInt32(ProdDGV.SelectedRows[0].Cells[3].Value); // Lấy giá từ ProdDGV
+            int total = price * qty;
+
             DataGridViewRow newRow = new DataGridViewRow();
             newRow.CreateCells(OrdersDGV);
-            OrdersDGV.Rows.Add(newRow);
             newRow.Cells[0].Value = n + 1;
             newRow.Cells[1].Value = txtProductName.Text;
             newRow.Cells[2].Value = qty;
-            newRow.Cells[3].Value = txtProductPrice.Text;
+            newRow.Cells[3].Value = price; // Dùng giá từ ProdDGV
             newRow.Cells[4].Value = total;
-            newRow.CreateCells(OrdersDGV);
             OrdersDGV.Rows.Add(newRow);
             n++;
             Grdtotal += total;

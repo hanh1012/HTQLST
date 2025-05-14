@@ -29,25 +29,16 @@ namespace BusinessLayer
 
         public DataTable GetTopProducts(int month, int year)
         {
-            DataTable dt = new DataTable();
-            using (SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\SMMSD.mdf;Integrated Security=True"))
-            {
-                Con.Open();
-                string query = @"
-            SELECT p.ProdName, SUM(od.Quantity) as TotalSold
-            FROM OrderDetailsTbl od
-            JOIN ProductsTbl p ON od.ProdId = p.ProdId
-            JOIN BillsTbl b ON od.BillId = b.BillId
-            WHERE MONTH(CAST(b.BillDate AS DATE)) = @Month AND YEAR(CAST(b.BillDate AS DATE)) = @Year
-            GROUP BY p.ProdName
-            ORDER BY TotalSold DESC";
-                SqlDataAdapter sda = new SqlDataAdapter(query, Con);
-                sda.SelectCommand.Parameters.AddWithValue("@Month", month);
-                sda.SelectCommand.Parameters.AddWithValue("@Year", year);
-                sda.Fill(dt);
-                Con.Close();
-            }
-            return dt;
+            string query = @"SELECT p.ProdName, SUM(od.Quantity) as TotalSold
+                    FROM OrderDetailsTbl od
+                    JOIN ProductsTbl p ON od.ProdId = p.ProdId
+                    JOIN BillsTbl b ON od.BillId = b.BillId
+                    WHERE MONTH(CAST(b.BillDate AS DATE)) = @Month AND YEAR(CAST(b.BillDate AS DATE)) = @Year
+                    GROUP BY p.ProdName
+                    ORDER BY TotalSold DESC";
+            return new DataProvider().ExecuteQuery(query, CommandType.Text,
+                new SqlParameter("@Month", month),
+                new SqlParameter("@Year", year));
         }
 
     }
